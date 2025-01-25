@@ -1,0 +1,45 @@
+<%- include('./partials/header') %>
+
+
+            <div class="min-h-screen flex flex-col">
+                <div class="container px-10 py-20 flex flex-grow">
+                    <div class="w-[25%] flex h-screen flex-col items-start">
+                    </div>
+                    <main class="w-3/4 bg-white p-8 shadow ml-4">
+                        <h2 class="text-xl font-bold mb-4">Create New File</h2>
+                        <form autocomplete="off" action="/files/create" method="post" enctype="multipart/form-data">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">File Details</h3>
+                                <div class="mb-4">
+                                    <label class="block mb-2 font-medium">File</label>
+                                    <input name="pdf" type="file" class="py-2 px-4 rounded" value="Select File" accept="application/pdf" required>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input name="name" type="text" placeholder="File Name"
+                                        class="border p-2 rounded w-full">
+                                    <!-- <input name="url" type="text" placeholder="Drive Url"
+                                        class="border p-2 rounded w-full"> -->
+                                    <input name="description" type="text" placeholder="Document description"
+                                        class="border p-2 rounded w-full">
+                                        <input name="department" type="text" placeholder="Department"
+                                        class="border p-2 rounded w-full">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <!-- <input name="department" type="text" placeholder="Department"
+                                        class="border p-2 rounded w-full"> -->
+                                    <!-- <input name="panelcolor" type="text" placeholder="Panel Color"
+                                        class="border p-2 rounded w-full">
+                                    <input name="textcolor" type="text" placeholder="Text Color"
+                                        class="border p-2 rounded w-full"> -->
+                                </div>
+                            </div>
+                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
+                                value="Create New File">
+                        </form>
+                    </main>
+                </div>
+            </div>
+            <%- include('./partials/footer') %>

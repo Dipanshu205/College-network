@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0px;
+        }
+
+        .background {
+            height: 105vh;
+            /* Adjust height as needed */
+            background: linear-gradient(to top,
+                    /* rgba(80,80,125,0.2) */
+                    black 0%, rgba(255, 0, 0, 0) 100%);
+            display: flex;
+        }
+
+        .main-box {
+            background-color: white;
+            color: white;
+            width: 95%;
+            margin: 7vh 10vh 0 10vh;
+            border: none;
+            box-shadow: 0 0 45px black;
+            display: flex-column;
+        }
+
+        .nav-img {
+            background: linear-gradient(to bottom, black 0%, rgba(255, 0, 0, 0) 120%), url("../images/college.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 65%;
+            /* border-radius: 2% 4% 0 0; */
+            /* overflow: hidden; */
+        }
+
+        nav,
+        nav>div,
+        nav>ul {
+            padding-top: 2vh;
+            display: flex;
+            color: white;
+            gap: 5vw;
+            justify-content: space-around;
+            /* padding:0 6vw 0 2vw; */
+        }
+
+        nav>ul {
+            align-items: center;
+            font-size: 1.2rem
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .college-logo {
+            background-image: url("../images/RECKLogo.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 15vh;
+            width: 6.5vw;
+            mix-blend-mode: luminosity;
+        }
+
+
+
+        .content-shown,
+        .content-shown>div {
+            text-align: center;
+            margin: 4vh
+        }
+
+        .content-shown>h1 {
+            font-size: 3rem;
+        }
+
+
+
+
+
+
+
+
+        .button {
+            width: 60%;
+            display: flex;
+            gap: 5vw;
+            justify-content: space-around;
+            margin-left: 20%;
+            margin-top: 8vh;
+        }
+
+        /* button {
+            color: yellow;
+            border: 2px solid yellow;
+            height: 5vh;
+            width: 17vw;
+            background: transparent;
+        }
+
+        button:hover {
+            background: yellow;
+            color: white;
+        } */
+
+
+
+        .welcome-text {
+            /* border: 1px solid blue; */
+            padding: 3vh;
+            text-align: center;
+            color: black;
+        }
+
+        .welcome-content {
+            padding: 2vh 8vh 0 8vh;
+        }
+
+        .signature-div {
+            background: url("../images/signature.png");
+            background-size: cover;
+            background-position: center;
+            height: 8vh;
+            width: 20vh;
+            margin: 1% 0 0 65%;
+        }
+    </style>
+</head>
+
+<body class="font-['helvetica_now_display']">
+    <nav class="w-full flex justify-between px-5 py-3 bg-blue-400">
+        <h3 class="text-xl">Network-Touch</h3>
+        <% var loggedin=typeof loggedin !=="undefined" ? loggedin : true %>
+            <% if(loggedin){%>
+                <div class="flex gap-5">
+                    <a href="/Home">Home</a>
+                    <a href="/library">Library</a>
+                    <a href="/users/create">Upload</a>
+                    <a href="/users/profile">My Profile</a>
+                    <a class="text-red-600" href="/users/logout">Logout</a>
+                </div>
+                <% } %>
+    </nav>
+
+    <div class="background">
+        <div class="main-box">
+            <div class="nav-img">
+                <nav>
+                    <ul>
+                        <li>About</li>
+                        <li>Academics</li>
+                    </ul>
+                    <div class="college-logo"></div>
+                    <ul>
+                        <li>Pages</li>
+                        <li>Contact</li>
+                    </ul>
+                </nav>
+                <div class="content-shown">
+                    <h1>we foster wisdom</h1>
+                    <div>
+                        <p>creative thinking &amp; innovation</p>
+                        <p>creative thinking &amp; innovation</p>
+                        <p>creative thinking &amp; innovation</p>
+                    </div>
+                </div>
+                <!-- <div class="button">
+                    <button>I'm a guest</button>
+                    <button>Login</button>
+                </div> -->
+            </div>
+            <center class="welcome-text">
+                <div>
+                    <h1>Welcome</h1>
+                </div>
+                <div class="welcome-content">
+                    W3Schools is optimized for learning and training. Examples might be simplified to improve reading and learning.
+                    Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness
+                    of all content. While using W3Schools, you agree to have read and accepted our terms of use, cookie and privacy policy.
+                    <br><br>
+                    Copyright 1999-2024 by Refsnes Data. All Rights Reserved. W3Schools is Powered by W3.CSS.
+                </div>
+                <div class="signature-div">
+                </div>
+            </center>
+        </div>
+    </div>
+    <%- include('./partials/footer') %>

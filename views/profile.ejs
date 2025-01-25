@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    /* body {
+        
+    } */
+
+    nav {
+        background-color: #63b3ed;
+    }
+
+    header {
+        background-image: linear-gradient(to bottom, #63b3ed, white);
+        display: flex;
+        justify-content: space-between;
+        height: 93.4vh;
+    }
+
+    header,
+    h {
+        font-size: 3rem;
+    }
+
+    header>div>div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #content {
+        display: flex;
+        align-items: center;
+        padding-left: 4rem;
+        width: 43%;
+    }
+
+    header>div>img {
+        height: 92vh;
+        width: 30vw;
+        margin: 0 3vh;
+    }
+
+    section {
+        background-image: linear-gradient(to bottom, white, gray);
+    }
+
+
+    #Bio {
+        padding: 8%;
+    }
+
+    section>div {
+        font-size: 2rem;
+        margin-top: 2%;
+    }
+
+    section,
+    p {
+        font-size: 1rem;
+    }
+
+    #post-upload {
+        display: flex;
+        justify-content: space-around;
+        padding: 4%;
+    }
+
+    #post-upload>div {
+        /* border: 1px solid black; */
+        border-radius: 4%;
+        width: 40%;
+        box-shadow: 5px 10px 8px #777575;
+        background-color: #989696;
+        padding-left: 1%;
+    }
+
+    #main-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: .8rem;
+        text-align: left;
+
+    }
+</style>
+
+<body class="font-['helvetica_now_display']">
+    <nav class="w-full flex justify-between px-5 py-3">
+        <h3 class="text-xl"></h3>
+        <% var loggedin=typeof loggedin !=="undefined" ? loggedin : true %>
+            <% if(loggedin){%>
+                <div class="flex gap-5">
+                    <a href="/Home">Home</a>
+                    <a href="/library">Library</a>
+                    <a href="/users/create">Upload</a>
+                    <a href="/users/profile">My Profile</a>
+                    <a class="text-red-600" href="/users/logout">Logout</a>
+                </div>
+                <% } %>
+    </nav>
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+        <% } %>
+
+            <header>
+                <div id="content">
+                    <div>
+                        <b>
+                            <h1>
+                                <%= user.fullname %>
+                            </h1>
+                        </b>
+                        <!-- <h4>Working at</h4> -->
+                        <p><b>Organization :</b>
+                            <%= user.organization %>
+                        </p>
+                        <!-- <h4>current Role</h4> -->
+                        <p><b>Role :</b>
+                            <%= user.role %>
+                        </p>
+                        <p><b>Batch :</b>
+                            <%= user.batch %>
+                        </p>
+
+
+                        <!-- <p>Skills : Web-Developer || CyberSecurity || Rust || MySql || DSA || MERN Stack || MongoDb
+                            Compass</p> -->
+                        <p>Skills : <%= user.skills %>
+                        </p>
+                        <a href="update">
+                            <button
+                                style="border: 1px solid black;border-radius: 17%; font-size: 1rem; padding: 0 1% 0 1%;">update</button>
+                        </a>
+                        <div style="display: flex; gap: 2rem;">
+                            <a href="/library/">
+                                <button
+                                    style="color: rgb(104, 102, 102); font-size: .8rem; padding: 0 1% 0 1%;text-decoration: underline;">LinkedIn</button>
+                            </a>
+                            <a href="mailto:<%= user.email %>">
+                                <button
+                                    style="color: rgb(104, 102, 102); font-size: .8rem; padding: 0 1% 0 1%;text-decoration: underline;">Email</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                <div>
+
+
+                    <% if(user.profile_img && user.profile_img.length > 0) { %>
+                        <img src="data:image/jpeg;base64,<%= user.profile_img.toString('base64') %>" alt="">
+
+                        <% }else{ %>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4BDsJLJhqjQGKtsPXfkShT0An3rZdKtgwFA&s"
+                                alt="">
+
+                            <% } %>
+                </div>
+
+            </header>
+            <section>
+                <div id="Bio">
+                    <i>Bio</i>
+                        <p>
+                            <%= user.bio %>
+                        </p>
+                </div>
+
+                <div id="post-upload">
+                    <div>
+                        <h1><b>My Uploads</b></h1>
+                        <div>
+                            <center
+                                style="padding: 5px;width: 100%;height: 24.4rem; overflow-x: hidden; overflow-y: auto;">
+                                <% uploaded.forEach(function(file){ %>
+                                    <div
+                                        style="display: flex; background-color: rgb(186, 184, 184); height: 30%; max-width: 90%; border-radius: 8%; margin-bottom: 2%; border: 2px solid black;">
+
+
+                                        <div style="border: 2px solid black; height: 80%;width: 0; margin: 2%; "></div>
+                                        <div id="main-content">
+                                            <h3>
+                                                <%= file.id %>
+                                                    hello 1
+                                            </h3>
+                                            <h4>
+                                                <%= file.id %>
+                                                    gcgfcf
+                                            </h4>
+                                            <h4>
+                                                <%= file.id %>
+                                                    cfchch
+                                            </h4>
+                                            <a href="/library/<%= file.id %>">
+                                                <button
+                                                    style="color: rgb(104, 102, 102); font-size: .8rem; padding: 0 1% 0 1%;text-decoration: underline;">View</button>
+                                            </a>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <% }) %>
+                            </center>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h1><b>Posts</b></h1>
+
+                    </div>
+                </div>
+                <footer>
+
+                </footer>
+            </section>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<%- include('./partials/header') %>
+
+    <% if(success.length>0){ %>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+                <%= success %>
+            </span>
+        </div>
+        <% } %>
+
+            <div class="min-h-screen flex flex-col">
+                <div class="container px-10 py-20 flex flex-grow">
+                    <main class="w-3/4 bg-white p-8 shadow ml-4">
+                        <h2 class="text-xl font-bold mb-4">Update Your Profile</h2>
+                        <form autocomplete="off" action="/users/updated" method="post" enctype="multipart/form-data">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">User Details</h3>
+                                <div class="mb-4">
+                                    <label class="block mb-2 font-medium">Profile Photo</label>
+                                    <input name="profile_img" type="file" class="py-2 px-4 rounded">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                        
+                                    <input name="organization" type="text" value="<%= user.organization %>"
+                                        placeholder="Organization" class="border p-2 rounded w-full">
+                                    <input name="role" type="text" value="<%= user.role %>"
+                                        placeholder="Role in orgainzation" class="border p-2 rounded w-full">
+                                    <input name="batch" type="text" value="<%= user.batch %>"
+                                        placeholder="Your Batch" class="border p-2 rounded w-full">
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Personal Details</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input name="skills" type="text" value="<%= user.skills %>" placeholder="skills"
+                                        class="border p-2 rounded w-full">
+                                    <input name="bio" type="text" value="<%= user.bio %>" value="<%= user.skills %>" placeholder="bio"
+                                        class="border p-2 rounded w-full">
+                                    <input name="contact" type="number" value="<%= user.contact %>"
+                                        placeholder="contact" class="border p-2 rounded w-full">
+                                        
+                                </div>
+                            </div>
+                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit" value="update">
+                        </form>
+                    </main>
+                </div>
+            </div>
+            <%- include('./partials/footer') %>

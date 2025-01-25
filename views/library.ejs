@@ -1,0 +1,84 @@
+<%- include('./partials/header') %>
+<% if(success.length>0){ %>
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+        <span class="inline-block mt-1 mb-1 text-white">
+            <%= success %>
+        </span>
+    </div>
+    <% } %>
+
+        <div style="height: 4rem; background-color: #90cdf4;">
+            <p></p>
+        </div>
+
+
+        <div style="display: flex;">
+            <div style="height: 38.4rem; width: 25%;">
+                <marquee direction="up" loop=""
+                    style="height: 38.4rem; display: flex; justify-content: center; background-color: rgb(180, 180, 180);">
+                    <p style="margin-bottom: 3rem;">A computer science portal for geeks</p>
+                    <p style="margin-bottom: 3rem;">Guided by Mr. Shashank Yadav</p>
+                    <p style="margin-bottom: 3rem;">Portal for Students</p>
+                    <p style="margin-bottom: 3rem;">Share your NOTES here</p>
+                    <p style="margin-bottom: 3rem;">Guide others</p>
+                </marquee>
+            </div>
+
+            <center style="padding: 5px;
+    width: 75%;
+    height: 38.4rem;
+    overflow-x: hidden;
+    overflow-y: auto;">
+                <% pdfFiles.forEach(function(file){ %>
+                    <div
+                                        style="display: flex; background-color: rgb(186, 184, 184); min-height: 30%; max-width: 90%; border-radius: 8%; margin-bottom: 2%; border: 2px solid black;">
+
+
+                                        <div style="border: 2px solid black; min-height: 80;width: 0; margin: 2%; "></div>
+                                        <div style="
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            font-size: 1rem;
+                                            text-align: left;
+                                            padding: 2% 2% 2% 0;">
+                                            <h2>
+                                                <b>Document Name : </b><%= file.name %>
+                                            </h2>
+                                            <h4>
+                                                <b>Published by: </b><%= file.user %>
+                                            </h4>
+                                            <h4>
+                                                <b>File descibtion: </b><%= file.description %>
+                                            </h4>
+                                            <h4>
+                                                <b>Published on:</b><%= file.date.toISOString().split('T')[0]; %>
+                                            </h4>
+                                            <div style="display: flex; gap: 2%;">
+
+                                                <a href="data:application/pdf;base64,<%= file.pdf.toString('base64') %>" download="document.pdf"><button
+                                                    style="color: rgb(104, 102, 102); font-size: .8rem; text-decoration: underline;">Download</button></a>
+                                                <a href="/library/<%= file.id %>">
+                                                    <button
+                                                        style="color: rgb(104, 102, 102); font-size: .8rem; text-decoration: underline;">View</button>
+                                                </a>
+                                                
+
+                                            </div>
+                                            
+
+
+                                        </div>
+
+
+
+                                    </div>
+                    <% }) %>
+            </center>
+
+        </div>
+
+
+
+
+        <%- include('./partials/footer') %>
